@@ -10,8 +10,12 @@
 </template>
 
 <script>
+import { distance } from 'fastest-levenshtein';
 import PictureInput from '../components/PictureInput.vue';
+import celebritiesInfos from '@/assets/celebritiesInfos.json';
 import Swal from 'sweetalert2';
+
+const ACCEPTABLE_DIST = 2;
 
 export default {
     components: {
@@ -19,18 +23,14 @@ export default {
     },
     data() {
         return {
-            celebritiesInfos: [
-                {
-                    name: 'test',
-                    url: 'test',
-                },
-            ],
+            celebritiesInfos: [],
             celebrity: {},
             remainingTime: 60,
             score: 0,
         };
     },
     created() {
+        this.celebritiesInfos = [...celebritiesInfos];
         this.swapCelebrity();
         this.intervalId = setInterval(() => {
             if (this.remainingTime === 0) {
@@ -58,7 +58,7 @@ export default {
             this.$router.push('/');
         },
         guessCelebrity(name) {
-            if (name === this.celibrity.name) {
+            if (distance(name, this.celibrity.name) <= ACCEPTABLE_DIST) {
                 this.score += 1;
                 this.swapCelebrity();
             } else {
@@ -66,7 +66,7 @@ export default {
                     icon: 'error',
                     title: 'FAUX',
                     text: "Ce n'est pas la bonne réponse",
-                    timer: 2000,
+                    timer: 1000,
                     showConfirmButton: false,
                 });
             }
