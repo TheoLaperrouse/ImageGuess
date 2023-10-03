@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.1.0...v1.2.0) (2023-10-03)
+
+
+### Bug Fixes
+
+* Use Tailwind CSS class instead of classic CSS ([b78bdc1](https://github.com/TheoLaperrouse/CelebrityGuess/commit/b78bdc1b5f3e77e13f69e56f21ccce5385eb2f0e))
+
+
+### Features
+
+* Add a NavBar and import FontAwesomeIcons ([a2d0bae](https://github.com/TheoLaperrouse/CelebrityGuess/commit/a2d0bae16bfca7c7508e89440fefcbb7f06fef6b))
+
 # [1.1.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.0.0...v1.1.0) (2023-10-03)
 
 
