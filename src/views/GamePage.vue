@@ -1,9 +1,10 @@
 <template>
-    <div class="game-page">
-        <div class="timer">
-            <span class="timer-text">Temps restant : {{ remainingTime }} secondes / Score {{ score }}</span>
+    <div class="bg-gray-900 text-white flex flex-col items-center justify-center">
+        <div class="mb-6">
+            <span class="text-2xl font-semibold text-blue-500">Temps restant : {{ remainingTime }} secondes</span>
+            <span class="ml-4 text-2xl font-semibold">Score : {{ score }}</span>
         </div>
-        <div class="picture-container">
+        <div class="picture-container flex-1 flex items-center justify-center">
             <picture-input :image-url="imageUrl" @guess-validated="guessCelebrity" />
         </div>
     </div>
@@ -74,31 +75,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.game-page {
-    color: white; /* Texte blanc */
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.timer {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.timer-text {
-    color: #007bff;
-}
-
-.picture-container {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-</style>

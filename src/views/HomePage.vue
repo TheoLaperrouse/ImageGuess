@@ -1,8 +1,10 @@
 <template>
-    <div class="container">
-        <h1>Bienvenue au jeu de reconnaissance de célébrité !</h1>
-        <p>Le nom exacte est requis (avec une majuscule au début)</p>
-        <button @click="beginGame">Commencer le jeu</button>
+    <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+        <h1 class="text-2xl mb-5">Bienvenue au jeu de reconnaissance de célébrité !</h1>
+        <p class="text-base mb-5">On cherche le nom de famille de la célébrité</p>
+        <button @click="beginGame" class="px-4 py-2 text-white bg-blue-500 rounded-lg transition hover:bg-blue-700">
+            Commencer le jeu
+        </button>
     </div>
 </template>
 
@@ -15,33 +17,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-</style>

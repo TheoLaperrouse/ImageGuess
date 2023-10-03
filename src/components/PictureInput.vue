@@ -1,8 +1,19 @@
 <template>
-    <div class="picture-input">
-        <img :src="imageUrl" alt="Photo" class="picture" />
-        <input type="text" v-model="guess" @keyup.enter="guessCelebrity" />
-        <button @click="guessCelebrity">Valider</button>
+    <div class="text-center">
+        <img :src="imageUrl" alt="Photo" class="max-w-full max-h-96 mx-auto border border-gray-300 rounded-md mb-4" />
+        <input
+            type="text"
+            v-model="guess"
+            @keyup.enter="guessCelebrity"
+            class="w-full px-4 py-2 text-base border border-gray-300 rounded-md mb-4 text-gray-800"
+            placeholder="Devinez la célébrité"
+        />
+        <button
+            @click="guessCelebrity"
+            class="bg-blue-500 text-white rounded-md px-4 py-2 text-base cursor-pointer hover:bg-blue-700"
+        >
+            Valider
+        </button>
     </div>
 </template>
 
@@ -24,42 +35,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.picture-input {
-    text-align: center;
-}
-
-.picture {
-    max-width: 100%;
-    max-height: 300px; /* Ajustez la hauteur selon vos besoins */
-    margin: 0 auto;
-    display: block;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-</style>
