@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.2.0...v1.3.0) (2023-10-07)
+
+
+### Bug Fixes
+
+* Add FontAwesome icons ([8e44255](https://github.com/TheoLaperrouse/CelebrityGuess/commit/8e44255f63869e95350572c0fd1866180a395e3f))
+* Harmonize design ([4c770c6](https://github.com/TheoLaperrouse/CelebrityGuess/commit/4c770c6adfece6c9d1e84f5e0d7eec403e97b997))
+
+
+### Features
+
+* Add a skip feature ([75dd46c](https://github.com/TheoLaperrouse/CelebrityGuess/commit/75dd46cbd2384039c56e8781303741072e07323f))
+* Better notification and add a fullscreen mode ([a90da7c](https://github.com/TheoLaperrouse/CelebrityGuess/commit/a90da7c158f302c6f938386669edf8053f73ef40))
+
 # [1.2.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.1.0...v1.2.0) (2023-10-03)
 
 
