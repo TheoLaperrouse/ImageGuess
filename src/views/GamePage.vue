@@ -1,11 +1,24 @@
 <template>
     <div class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
-        <div class="mb-6">
-            <span class="text-2xl font-semibold text-blue-500">Temps restant : {{ remainingTime }} secondes</span>
-            <span class="ml-4 text-2xl font-semibold">Score : {{ score }}</span>
+        <div class="flex mt-4">
+            <div class="flex items-center">
+                <span class="text-2xl font-semibold text-blue-500">Temps restant : {{ remainingTime }} secondes</span>
+                <span class="ml-4 text-2xl font-semibold">Score : {{ score }}</span>
+            </div>
+        </div>
+        <div class="flex ml-4 mt-4 h-7" v-if="this.skipsUsed < 3">
+            <span class="ml-4 text-2xl font-semibold">Skip restants : </span>
+            <div v-for="skip in 3 - this.skipsUsed" :key="skip" class="text-green-500">
+                <FontAwesomeIcon :icon="['fas', 'forward']" class="text-2xl ml-4 mt-1" />
+            </div>
         </div>
         <div class="picture-container flex-1 flex items-center justify-center">
-            <picture-input :image-url="celebrity.url" @guess-validated="guessCelebrity" />
+            <picture-input
+                :can-skip="skipsUsed < 3"
+                :image-url="celebrity.url"
+                @guess="guessCelebrity"
+                @skip="skipCelebrity"
+            />
         </div>
     </div>
 </template>
@@ -16,18 +29,21 @@ import PictureInput from '../components/PictureInput.vue';
 import celebritiesInfos from '@/assets/celebritiesInfos.json';
 import { Toast } from '@/components/toast.js';
 import Swal from 'sweetalert2';
+import FontAwesomeIcon from '../fontawesome';
 
 const ACCEPTABLE_DIST = 2;
 
 export default {
     components: {
         PictureInput,
+        FontAwesomeIcon,
     },
     data() {
         return {
             celebritiesInfos: [],
             celebrity: {},
             remainingTime: 60,
+            skipsUsed: 0,
             score: 0,
             intervalId: null,
         };
@@ -60,6 +76,14 @@ export default {
             Swal.fire(`${message ?? ''}Bravo, vous avez eu un score de ${this.score}`);
             clearInterval(this.intervalId);
             this.$router.push('/');
+        },
+        skipCelebrity() {
+            Toast.fire({
+                icon: 'error',
+                title: `Bien passé, c'était ${this.celebrity.name}`,
+            });
+            this.skipsUsed += 1;
+            this.swapCelebrity();
         },
         guessCelebrity(name) {
             if (distance(name, this.celebrity.name) <= ACCEPTABLE_DIST) {
