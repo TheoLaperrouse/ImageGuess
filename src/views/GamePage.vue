@@ -13,15 +13,15 @@
             </div>
         </div>
         <div class="picture-container flex-1 flex items-center justify-center">
-            <picture-input :can-skip="skipsUsed < 3" :image-url="image.url" @guess="guessImage" @skip="skipImage" />
+            <ImageInput :can-skip="skipsUsed < 3" :image-url="image.url" @guess="guessImage" @skip="skipImage" />
         </div>
     </div>
 </template>
 
 <script>
 import { distance } from 'fastest-levenshtein';
-import PictureInput from '../components/PictureInput.vue';
 import imagesInfos from '@/assets/imagesInfos.json';
+import ImageInput from '@/components/ImageInput.vue';
 import { Toast } from '@/components/toast.js';
 import Swal from 'sweetalert2';
 import FontAwesomeIcon from '../fontawesome';
@@ -30,7 +30,7 @@ const ACCEPTABLE_DIST = 2;
 
 export default {
     components: {
-        PictureInput,
+        ImageInput,
         FontAwesomeIcon,
     },
     data() {
@@ -73,12 +73,19 @@ export default {
             this.$router.push('/');
         },
         skipImage() {
-            Toast.fire({
-                icon: 'error',
-                title: `Image passée, c'était ${this.image.name}`,
-            });
-            this.skipsUsed += 1;
-            this.swapImage();
+            if (this.skipsUsed < 3) {
+                Toast.fire({
+                    icon: 'error',
+                    title: `Image passée, c'était ${this.image.name}`,
+                });
+                this.skipsUsed += 1;
+                this.swapImage();
+            } else {
+                Toast.fire({
+                    icon: 'error',
+                    title: `Vous ne pouvez plus passer`,
+                });
+            }
         },
         guessImage(name) {
             if (distance(name, this.image.name) <= ACCEPTABLE_DIST) {

@@ -1,10 +1,11 @@
 <template>
     <div class="text-center">
-        <img :src="imageUrl" alt="Photo" class="max-w-full max-h-96 mx-auto border border-gray-300 rounded-md mb-4" />
+        <img :src="imageUrl" alt="Image" class="max-w-full max-h-96 mx-auto border border-gray-300 rounded-md mb-4" />
         <input
             type="text"
             v-model="input"
             @keyup.enter="sendEvent('guess')"
+            @keydown.tab.prevent="sendEvent('skip')"
             class="w-full px-4 py-2 text-base border border-gray-300 rounded-md mb-4 text-gray-800"
             placeholder="Devinez l'image"
         />
