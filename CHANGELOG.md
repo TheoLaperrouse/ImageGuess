@@ -1,5 +1,11 @@
-# [1.4.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.3.2...v1.4.0) (2023-10-10)
 
+## [1.4.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.4.0...v1.4.1) (2023-10-10)
+
+### Bug Fixes
+
+* Fix Navbar to the top ([0bda02d](https://github.com/TheoLaperrouse/CelebrityGuess/commit/0bda02de1054e5cfc8dcffbfa4c064d69d33802d))
+
+## [1.4.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.3.2...v1.4.0) (2023-10-10)
 
 ### Features
 
