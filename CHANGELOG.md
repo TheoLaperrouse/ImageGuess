@@ -1,3 +1,14 @@
+# [1.5.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.4.1...v1.5.0) (2023-10-10)
+
+
+### Bug Fixes
+
+* Add --fix option for eslint in lint-staged ([b3bca65](https://github.com/TheoLaperrouse/CelebrityGuess/commit/b3bca656d0b172d8bbb47299f8984754186933ef))
+
+
+### Features
+
+* Change the repo name from celebrity guess to image guess ([6841880](https://github.com/TheoLaperrouse/CelebrityGuess/commit/6841880ac699987681a413db799a9d6ecc131f3f))
 
 ## [1.4.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.4.0...v1.4.1) (2023-10-10)
 
