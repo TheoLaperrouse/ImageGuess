@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.3.0...v1.3.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* Fix some spelling mistakes ([b906d66](https://github.com/TheoLaperrouse/CelebrityGuess/commit/b906d66e5d6f31f77345cca0bef1d15408d34d42))
+
 # [1.3.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.2.0...v1.3.0) (2023-10-07)
 
 
