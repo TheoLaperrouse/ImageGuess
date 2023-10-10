@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.5.1...v1.6.0) (2023-10-10)
+
+
+### Features
+
+* Add shortcuts to skip Image ([b1dbe6c](https://github.com/TheoLaperrouse/ImageGuess/commit/b1dbe6c41ebb1fee8eafebed9c7c1315696d3169))
+
 ## [1.5.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.5.0...v1.5.1) (2023-10-10)
 
 
