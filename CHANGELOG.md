@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.3.2...v1.4.0) (2023-10-10)
+
+
+### Features
+
+* Use vite instead of vue-cli-service ([20cb4a4](https://github.com/TheoLaperrouse/CelebrityGuess/commit/20cb4a499a5cd915d5e69f28709a74b2fc1a89a6))
+
 ## [1.3.2](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.3.1...v1.3.2) (2023-10-10)
 
 
