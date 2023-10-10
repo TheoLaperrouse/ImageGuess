@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.3.1...v1.3.2) (2023-10-10)
+
+
+### Bug Fixes
+
+* Add some documentation to run the app ([28c92f8](https://github.com/TheoLaperrouse/CelebrityGuess/commit/28c92f81f75795d909f98ca023d01df8fcf1fb45))
+
 ## [1.3.1](https://github.com/TheoLaperrouse/CelebrityGuess/compare/v1.3.0...v1.3.1) (2023-10-10)
 
 
