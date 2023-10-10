@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.5.0...v1.5.1) (2023-10-10)
+
+
+### Bug Fixes
+
+* Fix Changelog links ([dddb427](https://github.com/TheoLaperrouse/ImageGuess/commit/dddb427acc3a603fdc06c4155fe4caf998b3255c))
+
 # [1.5.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.4.1...v1.5.0) (2023-10-10)
 
 
