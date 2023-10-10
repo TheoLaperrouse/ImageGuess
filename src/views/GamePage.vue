@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center">
+    <div class="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center pt-12">
         <div class="flex mt-4">
             <div class="flex items-center">
                 <span class="text-2xl font-semibold text-blue-500">Temps restant : {{ remainingTime }} secondes</span>

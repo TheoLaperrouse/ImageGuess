@@ -1,5 +1,5 @@
 <template>
-    <nav class="bg-blue-500 p-4 flex items-center" :class="{ hidden: isFullScreen }">
+    <nav class="bg-blue-500 p-4 flex items-center fixed w-full" :class="{ hidden: isFullScreen }">
         <a
             href="https://github.com/TheoLaperrouse/CelebrityGuess"
             target="_blank"
