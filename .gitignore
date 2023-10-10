@@ -22,5 +22,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# Celebrities assets
-/src/assets/celebritiesInfos.json
+# Images assets
+/src/assets/imagesInfos.json

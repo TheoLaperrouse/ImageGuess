@@ -6,7 +6,7 @@
             v-model="input"
             @keyup.enter="sendEvent('guess')"
             class="w-full px-4 py-2 text-base border border-gray-300 rounded-md mb-4 text-gray-800"
-            placeholder="Devinez la célébrité"
+            placeholder="Devinez l'image"
         />
         <button
             @click="sendEvent('guess')"

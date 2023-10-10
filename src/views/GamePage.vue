@@ -13,12 +13,7 @@
             </div>
         </div>
         <div class="picture-container flex-1 flex items-center justify-center">
-            <picture-input
-                :can-skip="skipsUsed < 3"
-                :image-url="celebrity.url"
-                @guess="guessCelebrity"
-                @skip="skipCelebrity"
-            />
+            <picture-input :can-skip="skipsUsed < 3" :image-url="image.url" @guess="guessImage" @skip="skipImage" />
         </div>
     </div>
 </template>
@@ -26,7 +21,7 @@
 <script>
 import { distance } from 'fastest-levenshtein';
 import PictureInput from '../components/PictureInput.vue';
-import celebritiesInfos from '@/assets/celebritiesInfos.json';
+import imagesInfos from '@/assets/imagesInfos.json';
 import { Toast } from '@/components/toast.js';
 import Swal from 'sweetalert2';
 import FontAwesomeIcon from '../fontawesome';
@@ -40,8 +35,8 @@ export default {
     },
     data() {
         return {
-            celebritiesInfos: [],
-            celebrity: {},
+            imagesInfos: [],
+            image: {},
             remainingTime: 60,
             skipsUsed: 0,
             score: 0,
@@ -49,8 +44,8 @@ export default {
         };
     },
     created() {
-        this.celebritiesInfos = [...celebritiesInfos];
-        this.swapCelebrity();
+        this.imagesInfos = [...imagesInfos];
+        this.swapImage();
         this.intervalId = setInterval(() => {
             if (this.remainingTime === 0) {
                 this.endGame();
@@ -63,40 +58,40 @@ export default {
         clearInterval(this.intervalId);
     },
     methods: {
-        swapCelebrity() {
-            if (this.celebritiesInfos.length === 0) {
-                this.endGame('Vous avez trouvé toutes les célébrités. ');
+        swapImage() {
+            if (this.imagesInfos.length === 0) {
+                this.endGame('Vous avez trouvé toutes les images. ');
                 return;
             }
-            const index = Math.floor(Math.random() * this.celebritiesInfos.length);
-            this.celebrity = this.celebritiesInfos[index];
-            this.celebritiesInfos.splice(index, 1);
+            const index = Math.floor(Math.random() * this.imagesInfos.length);
+            this.image = this.imagesInfos[index];
+            this.imagesInfos.splice(index, 1);
         },
         endGame(message) {
             Swal.fire(`${message ?? ''}Bravo, vous avez eu un score de ${this.score}`);
             clearInterval(this.intervalId);
             this.$router.push('/');
         },
-        skipCelebrity() {
+        skipImage() {
             Toast.fire({
                 icon: 'error',
-                title: `Célébrité passée, c'était ${this.celebrity.name}`,
+                title: `Image passée, c'était ${this.image.name}`,
             });
             this.skipsUsed += 1;
-            this.swapCelebrity();
+            this.swapImage();
         },
-        guessCelebrity(name) {
-            if (distance(name, this.celebrity.name) <= ACCEPTABLE_DIST) {
+        guessImage(name) {
+            if (distance(name, this.image.name) <= ACCEPTABLE_DIST) {
                 this.score += 1;
                 Toast.fire({
                     icon: 'success',
                     title: 'Bravo, +1 point',
                 });
-                this.swapCelebrity();
+                this.swapImage();
             } else {
                 Toast.fire({
                     icon: 'error',
-                    title: "Ce n'est pas son nom",
+                    title: "C'est faux",
                 });
             }
         },

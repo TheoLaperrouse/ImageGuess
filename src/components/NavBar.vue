@@ -1,7 +1,7 @@
 <template>
     <nav class="bg-blue-500 p-4 flex items-center fixed w-full" :class="{ hidden: isFullScreen }">
         <a
-            href="https://github.com/TheoLaperrouse/CelebrityGuess"
+            href="https://github.com/TheoLaperrouse/ImageGuess"
             target="_blank"
             rel="noopener noreferrer"
             class="text-white ml-auto"
