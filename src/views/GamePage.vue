@@ -65,7 +65,7 @@ export default {
     methods: {
         swapCelebrity() {
             if (this.celebritiesInfos.length === 0) {
-                this.endGame('Vous avez trouvé toutes les célébrités.');
+                this.endGame('Vous avez trouvé toutes les célébrités. ');
                 return;
             }
             const index = Math.floor(Math.random() * this.celebritiesInfos.length);
@@ -80,7 +80,7 @@ export default {
         skipCelebrity() {
             Toast.fire({
                 icon: 'error',
-                title: `Bien passé, c'était ${this.celebrity.name}`,
+                title: `Célébrité passée, c'était ${this.celebrity.name}`,
             });
             this.skipsUsed += 1;
             this.swapCelebrity();
