@@ -69,28 +69,28 @@ export default {
         },
         endGame(message) {
             clearInterval(this.intervalId);
-            const highScore = parseInt(localStorage.getItem('highScore') ?? 0);
+            const highScore = parseInt(localStorage.getItem('highScore')) || 0;
+            let resultMessage = `${message || ''}Bravo, vous avez obtenu un score de ${this.score}.`;
             if (this.score > highScore) {
-                Swal.fire(`Bravo, vous avez amélioré votre high score de ${this.score - highScore}`);
+                resultMessage += `\nVous avez amélioré votre meilleur score de ${this.score - highScore} points.`;
                 localStorage.setItem('highScore', this.score);
-            } else {
-                Swal.fire(`${message ?? ''}Bravo, vous avez eu un score de ${this.score}`);
             }
+
+            Swal.fire(resultMessage);
             this.$router.push('/');
         },
         skipImage() {
-            if (this.skipsUsed < 3) {
-                Toast.fire({
-                    icon: 'error',
-                    title: `Image passée, c'était ${this.image.name}`,
-                });
+            const canSkip = this.skipsUsed < 3;
+            const message = canSkip ? `Image passée, c'était ${this.image.name}` : `Vous ne pouvez plus passer`;
+
+            Toast.fire({
+                icon: 'error',
+                title: message,
+            });
+
+            if (canSkip) {
                 this.skipsUsed += 1;
                 this.swapImage();
-            } else {
-                Toast.fire({
-                    icon: 'error',
-                    title: `Vous ne pouvez plus passer`,
-                });
             }
         },
         guessImage(name) {
