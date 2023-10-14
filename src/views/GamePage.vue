@@ -68,8 +68,14 @@ export default {
             this.imagesInfos.splice(index, 1);
         },
         endGame(message) {
-            Swal.fire(`${message ?? ''}Bravo, vous avez eu un score de ${this.score}`);
             clearInterval(this.intervalId);
+            const highScore = parseInt(localStorage.getItem('highScore') ?? 0);
+            if (this.score > highScore) {
+                Swal.fire(`Bravo, vous avez amélioré votre high score de ${this.score - highScore}`);
+                localStorage.setItem('highScore', this.score);
+            } else {
+                Swal.fire(`${message ?? ''}Bravo, vous avez eu un score de ${this.score}`);
+            }
             this.$router.push('/');
         },
         skipImage() {
