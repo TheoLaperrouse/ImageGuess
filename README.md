@@ -12,11 +12,11 @@ Le jeu dure 60 secondes et à chaque bonne réponse, un point est ajouté.
 
 Assurer vous d'être en node 18, puis installer les dépendances :
 ```sh
-npm install --production=true
+npm install
 ```
 ou
 ```sh
-yarn install --production=true
+yarn
 ```
 
 Éditer le fichier src/assets/imagesInfos.json pour y ajouter des images :
