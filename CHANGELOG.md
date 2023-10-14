@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.6.1...v1.7.0) (2023-10-14)
+
+
+### Features
+
+* Add a highscore feature ([b8e40cc](https://github.com/TheoLaperrouse/ImageGuess/commit/b8e40cc9296bf8ea04878f7445f93cface1de61f))
+
 ## [1.6.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.6.0...v1.6.1) (2023-10-14)
 
 
