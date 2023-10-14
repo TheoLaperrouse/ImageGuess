@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.6.0...v1.6.1) (2023-10-14)
+
+
+### Bug Fixes
+
+* Fix documentation ([4b5bf8b](https://github.com/TheoLaperrouse/ImageGuess/commit/4b5bf8be6f234f3c8622cf1e7dd55c8d972895d8))
+
 # [1.6.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.5.1...v1.6.0) (2023-10-10)
 
 
