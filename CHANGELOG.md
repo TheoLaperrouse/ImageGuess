@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.0...v1.7.1) (2023-10-14)
+
+
+### Bug Fixes
+
+* Better lisibility / refacto methods ([f391eda](https://github.com/TheoLaperrouse/ImageGuess/commit/f391edaec9599b76211f7fcadeec83508c023f14))
+
 # [1.7.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.6.1...v1.7.0) (2023-10-14)
 
 
