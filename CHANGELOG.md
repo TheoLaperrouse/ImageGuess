@@ -1,3 +1,10 @@
+## [1.7.3](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.2...v1.7.3) (2023-10-19)
+
+
+### Bug Fixes
+
+* fix dockerfile ([d8a4d87](https://github.com/TheoLaperrouse/ImageGuess/commit/d8a4d87bcaf73a738d9a5b2aef0a667b6cdc971f))
+
 ## [1.7.2](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.1...v1.7.2) (2023-10-15)
 
 
