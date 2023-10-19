@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.1...v1.7.2) (2023-10-15)
+
+
+### Bug Fixes
+
+* add a nginx docker image ([0f2e95f](https://github.com/TheoLaperrouse/ImageGuess/commit/0f2e95f954d9bccba7ce4998475dc41dedb5c600))
+
 ## [1.7.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.0...v1.7.1) (2023-10-14)
 
 
