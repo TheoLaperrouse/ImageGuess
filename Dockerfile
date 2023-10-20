@@ -8,4 +8,7 @@ WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/dist .
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+EXPOSE 8000
+
+CMD ["nginx", "-g", "daemon off;"]
