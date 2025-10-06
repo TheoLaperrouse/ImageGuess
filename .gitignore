@@ -22,5 +22,4 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# Images assets
-/src/assets/imagesInfos.json
+.env

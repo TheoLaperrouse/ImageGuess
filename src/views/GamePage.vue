@@ -20,7 +20,7 @@
 
 <script>
 import { distance } from 'fastest-levenshtein';
-import imagesInfos from '@/assets/imagesInfos.json';
+import { supabase } from '@/supabase.js';
 import ImageInput from '@/components/ImageInput.vue';
 import { Toast } from '@/components/toast.js';
 import Swal from 'sweetalert2';
@@ -43,8 +43,8 @@ export default {
             intervalId: null,
         };
     },
-    created() {
-        this.imagesInfos = [...imagesInfos];
+    async created() {
+        await this.fetchImages();
         this.swapImage();
         this.intervalId = setInterval(() => {
             if (this.remainingTime === 0) {
@@ -58,6 +58,13 @@ export default {
         clearInterval(this.intervalId);
     },
     methods: {
+        async fetchImages() {
+            const { data, error } = await supabase.from('images').select('*');
+            if (error) {
+                return;
+            }
+            this.imagesInfos = data;
+        },
         swapImage() {
             if (this.imagesInfos.length === 0) {
                 this.endGame('Vous avez trouvé toutes les images. ');
@@ -94,7 +101,8 @@ export default {
             }
         },
         guessImage(name) {
-            if (distance(name, this.image.name) <= ACCEPTABLE_DIST) {
+            const [firstName, lastName] = this.image.name.split(' ');
+            if (distance(name, firstName) <= ACCEPTABLE_DIST || distance(name, lastName) <= ACCEPTABLE_DIST) {
                 this.score += 1;
                 Toast.fire({
                     icon: 'success',
