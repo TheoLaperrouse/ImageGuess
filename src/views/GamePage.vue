@@ -67,7 +67,7 @@ export default {
         },
         swapImage() {
             if (this.imagesInfos.length === 0) {
-                this.endGame('Vous avez trouvé toutes les images. ');
+                this.endGame('🎉 Vous avez trouvé toutes les images. ');
                 return;
             }
             const index = Math.floor(Math.random() * this.imagesInfos.length);
@@ -78,7 +78,7 @@ export default {
             clearInterval(this.intervalId);
             const highScore = parseInt(localStorage.getItem('highScore')) || 0;
             let resultMessage = `${message || ''}Bravo, vous avez obtenu un score de ${this.score}.`;
-            if (this.score > highScore) {
+            if (highScore !== 0 && this.score > highScore) {
                 resultMessage += `\nVous avez amélioré votre meilleur score de ${this.score - highScore} points.`;
                 localStorage.setItem('highScore', this.score);
             }
@@ -102,17 +102,21 @@ export default {
         },
         guessImage(name) {
             const [firstName, lastName] = this.image.name.split(' ');
-            if (distance(name, firstName) <= ACCEPTABLE_DIST || distance(name, lastName) <= ACCEPTABLE_DIST) {
+            if (
+                (firstName && distance(name, firstName) <= ACCEPTABLE_DIST) ||
+                (lastName && distance(name, lastName) <= ACCEPTABLE_DIST) ||
+                distance(name, this.image.name) <= ACCEPTABLE_DIST
+            ) {
                 this.score += 1;
                 Toast.fire({
                     icon: 'success',
-                    title: 'Bravo, +1 point',
+                    title: '✅ Bonne réponse ! +1 point',
                 });
                 this.swapImage();
             } else {
                 Toast.fire({
                     icon: 'error',
-                    title: "C'est faux",
+                    title: '❌ Mauvaise réponse !',
                 });
             }
         },
