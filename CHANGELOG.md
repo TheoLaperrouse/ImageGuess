@@ -1,3 +1,16 @@
+# [1.8.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.1...v1.8.0) (2025-10-06)
+
+
+### Bug Fixes
+
+* add a nginx docker image ([0f2e95f](https://github.com/TheoLaperrouse/ImageGuess/commit/0f2e95f954d9bccba7ce4998475dc41dedb5c600))
+* Fix dockerfile and add some docs ([0b12017](https://github.com/TheoLaperrouse/ImageGuess/commit/0b12017368224d24b7eeffcafbed86464a5778cb))
+
+
+### Features
+
+* fix deployment and use supabase to get images ([a1ee244](https://github.com/TheoLaperrouse/ImageGuess/commit/a1ee244fe2d615566eea93d28a4e57c6e095ec1a))
+
 ## [1.7.2](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.1...v1.7.2) (2023-10-20)
 
 
