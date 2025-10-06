@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.8.0...v1.9.0) (2025-10-06)
+
+
+### Features
+
+* accept whole name ([d76b07f](https://github.com/TheoLaperrouse/ImageGuess/commit/d76b07fd6697f9a503728812f3e73fe4fdc8f9df))
+
 # [1.8.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.7.1...v1.8.0) (2025-10-06)
 
 
