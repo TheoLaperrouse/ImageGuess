@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.9.0...v1.10.0) (2025-10-22)
+
+
+### Features
+
+* get images from bucket ([0b3a5e1](https://github.com/TheoLaperrouse/ImageGuess/commit/0b3a5e157c2db4db076c984cb9996bbc83157fb1))
+
 # [1.9.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.8.0...v1.9.0) (2025-10-06)
 
 
