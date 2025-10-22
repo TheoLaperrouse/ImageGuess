@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.10.0...v1.10.1) (2025-10-22)
+
+
+### Bug Fixes
+
+* fix accessing this in template ([c2d92fd](https://github.com/TheoLaperrouse/ImageGuess/commit/c2d92fd47d3dc8bd415814a6eec239abf0101853))
+
 # [1.10.0](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.9.0...v1.10.0) (2025-10-22)
 
 
