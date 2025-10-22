@@ -20,7 +20,7 @@
 
 <script>
 import { distance } from 'fastest-levenshtein';
-import { supabase } from '@/supabase.js';
+import { supabase, publicUrl } from '@/supabase.js';
 import ImageInput from '@/components/ImageInput.vue';
 import { Toast } from '@/components/toast.js';
 import Swal from 'sweetalert2';
@@ -59,15 +59,22 @@ export default {
     },
     methods: {
         async fetchImages() {
-            const { data, error } = await supabase.from('images').select('*');
-            if (error) {
-                return;
-            }
-            this.imagesInfos = data;
+            const { data } = await supabase.storage.from('images').list();
+
+            this.imagesInfos = data.map(({ name }) => {
+                const fileName = name.replace(/\.[^/.]+$/, '');
+                const formattedName = fileName.replace(/([a-z])([A-Z])/g, '$1 $2').trim();
+
+                return {
+                    name: formattedName,
+                    url: publicUrl + name,
+                };
+            });
         },
+
         swapImage() {
             if (this.imagesInfos.length === 0) {
-                this.endGame('🎉 Vous avez trouvé toutes les images. ');
+                this.endGame('Vous avez trouvé toutes les images. ');
                 return;
             }
             const index = Math.floor(Math.random() * this.imagesInfos.length);
@@ -110,13 +117,13 @@ export default {
                 this.score += 1;
                 Toast.fire({
                     icon: 'success',
-                    title: '✅ Bonne réponse ! +1 point',
+                    title: 'Bonne réponse ! +1 point',
                 });
                 this.swapImage();
             } else {
                 Toast.fire({
                     icon: 'error',
-                    title: '❌ Mauvaise réponse !',
+                    title: 'Mauvaise réponse !',
                 });
             }
         },
