@@ -6,9 +6,9 @@
                 <span class="ml-4 text-2xl font-semibold">Score : {{ score }}</span>
             </div>
         </div>
-        <div class="flex ml-4 mt-4 h-7" v-if="this.skipsUsed < 3">
+        <div class="flex ml-4 mt-4 h-7" v-if="skipsUsed < 3">
             <span class="ml-4 text-2xl font-semibold">Skip restants : </span>
-            <div v-for="skip in 3 - this.skipsUsed" :key="skip" class="text-green-500">
+            <div v-for="skip in 3 - skipsUsed" :key="skip" class="text-green-500">
                 <FontAwesomeIcon :icon="['fas', 'forward']" class="text-2xl ml-4 mt-1" />
             </div>
         </div>
