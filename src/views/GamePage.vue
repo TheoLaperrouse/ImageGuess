@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="picture-container flex-1 flex items-center justify-center">
-            <ImageInput :can-skip="skipsUsed < 3" :image-url="image.url" @guess="guessImage" @skip="skipImage" />
+            <ImageInput :can-skip="skipsUsed < 3" :image-url="image.url" @guess="onGuess" @skip="onSkip" />
         </div>
     </div>
 </template>
@@ -74,7 +74,7 @@ function endGame(message = '') {
     router.push('/');
 }
 
-function skipImage() {
+function onSkip() {
     const canSkip = skipsUsed.value < 3;
     const message = canSkip ? `Image passée, c'était ${image.value.name}` : `Vous ne pouvez plus passer`;
 
@@ -89,7 +89,7 @@ function skipImage() {
     }
 }
 
-function guessImage(name) {
+function onGuess(name) {
     const [firstName, lastName] = image.value.name.split(' ');
     const isCorrect =
         (firstName && distance(name, firstName) <= ACCEPTABLE_DIST) ||

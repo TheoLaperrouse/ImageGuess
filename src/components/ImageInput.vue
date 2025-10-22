@@ -33,7 +33,7 @@ defineProps({
     canSkip: Boolean,
 });
 
-const emit = defineEmits(['sendEvent']);
+const emit = defineEmits(['skip', 'guess']);
 
 const input = ref('');
 
