@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.10.1...v1.10.2) (2025-10-22)
+
+
+### Bug Fixes
+
+* fix some warning in console ([fa1967a](https://github.com/TheoLaperrouse/ImageGuess/commit/fa1967aa50ac6b78ce18bf52217bec4a0e8679a1))
+
 ## [1.10.1](https://github.com/TheoLaperrouse/ImageGuess/compare/v1.10.0...v1.10.1) (2025-10-22)
 
 
