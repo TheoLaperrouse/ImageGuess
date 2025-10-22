@@ -11,4 +11,7 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    eslintConfig: {
+        extends: ['plugin:vue/vue3-recommended'],
+    },
 });

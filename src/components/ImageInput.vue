@@ -25,22 +25,20 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        imageUrl: String,
-        canSkip: Boolean,
-    },
-    data() {
-        return {
-            input: '',
-        };
-    },
-    methods: {
-        sendEvent(nameEvent) {
-            this.$emit(nameEvent, this.input);
-            this.input = '';
-        },
-    },
-};
+<script setup>
+import { ref } from 'vue';
+
+defineProps({
+    imageUrl: String,
+    canSkip: Boolean,
+});
+
+const emit = defineEmits(['sendEvent']);
+
+const input = ref('');
+
+function sendEvent(nameEvent) {
+    emit(nameEvent, input.value);
+    input.value = '';
+}
 </script>

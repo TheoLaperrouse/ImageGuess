@@ -17,8 +17,9 @@
         </div>
     </div>
 </template>
-
-<script>
+<script setup>
+import { ref, onBeforeUnmount, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { distance } from 'fastest-levenshtein';
 import { supabase, publicUrl } from '@/supabase.js';
 import ImageInput from '@/components/ImageInput.vue';
@@ -27,106 +28,103 @@ import Swal from 'sweetalert2';
 import FontAwesomeIcon from '../fontawesome';
 
 const ACCEPTABLE_DIST = 2;
+const router = useRouter();
 
-export default {
-    components: {
-        ImageInput,
-        FontAwesomeIcon,
-    },
-    data() {
+const imagesInfos = ref([]);
+const image = ref({});
+const remainingTime = ref(60);
+const skipsUsed = ref(0);
+const score = ref(0);
+let intervalId = null;
+
+async function fetchImages() {
+    const { data } = await supabase.storage.from('images').list();
+
+    imagesInfos.value = data.map(({ name }) => {
+        const fileName = name.replace(/\.[^/.]+$/, '');
+        const formattedName = fileName.replace(/([a-z])([A-Z])/g, '$1 $2').trim();
         return {
-            imagesInfos: [],
-            image: {},
-            remainingTime: 60,
-            skipsUsed: 0,
-            score: 0,
-            intervalId: null,
+            name: formattedName,
+            url: publicUrl + name,
         };
-    },
-    async created() {
-        await this.fetchImages();
-        this.swapImage();
-        this.intervalId = setInterval(() => {
-            if (this.remainingTime === 0) {
-                this.endGame();
-            } else {
-                this.remainingTime -= 1;
-            }
-        }, 1000);
-    },
-    beforeUnmount() {
-        clearInterval(this.intervalId);
-    },
-    methods: {
-        async fetchImages() {
-            const { data } = await supabase.storage.from('images').list();
+    });
+}
 
-            this.imagesInfos = data.map(({ name }) => {
-                const fileName = name.replace(/\.[^/.]+$/, '');
-                const formattedName = fileName.replace(/([a-z])([A-Z])/g, '$1 $2').trim();
+function swapImage() {
+    if (imagesInfos.value.length === 0) {
+        endGame('Vous avez trouvé toutes les images.');
+        return;
+    }
+    const index = Math.floor(Math.random() * imagesInfos.value.length);
+    image.value = imagesInfos.value[index];
+    imagesInfos.value.splice(index, 1);
+}
 
-                return {
-                    name: formattedName,
-                    url: publicUrl + name,
-                };
-            });
-        },
+function endGame(message = '') {
+    clearInterval(intervalId);
+    const highScore = parseInt(localStorage.getItem('highScore')) || 0;
 
-        swapImage() {
-            if (this.imagesInfos.length === 0) {
-                this.endGame('Vous avez trouvé toutes les images. ');
-                return;
-            }
-            const index = Math.floor(Math.random() * this.imagesInfos.length);
-            this.image = this.imagesInfos[index];
-            this.imagesInfos.splice(index, 1);
-        },
-        endGame(message) {
-            clearInterval(this.intervalId);
-            const highScore = parseInt(localStorage.getItem('highScore')) || 0;
-            let resultMessage = `${message || ''}Bravo, vous avez obtenu un score de ${this.score}.`;
-            if (highScore !== 0 && this.score > highScore) {
-                resultMessage += `\nVous avez amélioré votre meilleur score de ${this.score - highScore} points.`;
-                localStorage.setItem('highScore', this.score);
-            }
+    let resultMessage = `${message} Bravo, vous avez obtenu un score de ${score.value}.`;
+    if (score.value > highScore) {
+        resultMessage += `\nVous avez amélioré votre meilleur score de ${score.value - highScore} points.`;
+        localStorage.setItem('highScore', score.value);
+    }
 
-            Swal.fire(resultMessage);
-            this.$router.push('/');
-        },
-        skipImage() {
-            const canSkip = this.skipsUsed < 3;
-            const message = canSkip ? `Image passée, c'était ${this.image.name}` : `Vous ne pouvez plus passer`;
+    Swal.fire(resultMessage);
+    router.push('/');
+}
 
-            Toast.fire({
-                icon: 'error',
-                title: message,
-            });
+function skipImage() {
+    const canSkip = skipsUsed.value < 3;
+    const message = canSkip ? `Image passée, c'était ${image.value.name}` : `Vous ne pouvez plus passer`;
 
-            if (canSkip) {
-                this.skipsUsed += 1;
-                this.swapImage();
-            }
-        },
-        guessImage(name) {
-            const [firstName, lastName] = this.image.name.split(' ');
-            if (
-                (firstName && distance(name, firstName) <= ACCEPTABLE_DIST) ||
-                (lastName && distance(name, lastName) <= ACCEPTABLE_DIST) ||
-                distance(name, this.image.name) <= ACCEPTABLE_DIST
-            ) {
-                this.score += 1;
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Bonne réponse ! +1 point',
-                });
-                this.swapImage();
-            } else {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Mauvaise réponse !',
-                });
-            }
-        },
-    },
-};
+    Toast.fire({
+        icon: 'error',
+        title: message,
+    });
+
+    if (canSkip) {
+        skipsUsed.value += 1;
+        swapImage();
+    }
+}
+
+function guessImage(name) {
+    const [firstName, lastName] = image.value.name.split(' ');
+    const isCorrect =
+        (firstName && distance(name, firstName) <= ACCEPTABLE_DIST) ||
+        (lastName && distance(name, lastName) <= ACCEPTABLE_DIST) ||
+        distance(name, image.value.name) <= ACCEPTABLE_DIST;
+
+    if (isCorrect) {
+        score.value += 1;
+        Toast.fire({
+            icon: 'success',
+            title: 'Bonne réponse ! +1 point',
+        });
+        swapImage();
+    } else {
+        Toast.fire({
+            icon: 'error',
+            title: 'Mauvaise réponse !',
+        });
+    }
+}
+
+onMounted(async () => {
+    await fetchImages();
+    swapImage();
+});
+
+intervalId = setInterval(() => {
+    if (remainingTime.value === 0) {
+        endGame();
+    } else {
+        remainingTime.value -= 1;
+    }
+}, 1000);
+
+onBeforeUnmount(() => {
+    clearInterval(intervalId);
+});
 </script>

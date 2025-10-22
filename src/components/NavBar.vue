@@ -14,39 +14,31 @@
         </button>
     </nav>
 </template>
-
-<script>
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import FontAwesomeIcon from '../fontawesome';
 
-export default {
-    components: {
-        FontAwesomeIcon,
-    },
-    data() {
-        return {
-            isFullScreen: false,
-        };
-    },
-    created() {
-        const storedValue = localStorage.getItem('fullscreenPreference');
-        this.isFullScreen = storedValue ? JSON.parse(storedValue) : false;
-    },
-    mounted() {
-        document.addEventListener('keydown', this.handleKeyPress);
-    },
-    beforeUnmount() {
-        document.removeEventListener('keydown', this.handleKeyPress);
-    },
-    methods: {
-        toggleFullScreen(bool = true) {
-            this.isFullScreen = bool;
-            localStorage.setItem('fullscreenPreference', this.isFullScreen);
-        },
-        handleKeyPress(event) {
-            if (event.key === 'Escape' && this.isFullScreen) {
-                this.toggleFullScreen(false);
-            }
-        },
-    },
-};
+const isFullScreen = ref(false);
+
+function toggleFullScreen(bool = true) {
+    isFullScreen.value = bool;
+    localStorage.setItem('fullscreenPreference', JSON.stringify(isFullScreen.value));
+}
+
+function handleKeyPress(event) {
+    if (event.key === 'Escape' && isFullScreen.value) {
+        toggleFullScreen(false);
+    }
+}
+
+const storedValue = localStorage.getItem('fullscreenPreference');
+isFullScreen.value = storedValue ? JSON.parse(storedValue) : false;
+
+onMounted(() => {
+    document.addEventListener('keydown', handleKeyPress);
+});
+
+onBeforeUnmount(() => {
+    document.removeEventListener('keydown', handleKeyPress);
+});
 </script>
